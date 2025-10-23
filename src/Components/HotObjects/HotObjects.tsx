@@ -1,11 +1,7 @@
 "use client";
 
 import { Card } from "antd";
-import {
-  ExpandAltOutlined,
-  ExportOutlined,
-  SoundOutlined,
-} from "@ant-design/icons";
+import { SoundOutlined } from "@ant-design/icons";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -13,6 +9,7 @@ import {
   Tooltip as ChartTooltip,
   Legend,
 } from "chart.js";
+import ExportExpantButton from "../ExportExpantButton/ExportExpantButton";
 
 ChartJS.register(ArcElement, ChartTooltip, Legend);
 
@@ -40,7 +37,8 @@ export default function HotObjects() {
           "#ffccc7",
           "#ffd6d6",
         ],
-        borderWidth: 0,
+        borderColor: "#ffffff", // 👈 creates the visible space
+        borderWidth: 3, // 👈 controls gap thickness
         cutout: "80%",
       },
     ],
@@ -51,15 +49,14 @@ export default function HotObjects() {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div className="text-lg font-semibold">Hot Objects</div>
-        <div className="flex items-center gap-3 text-gray-500">
-          <ExportOutlined />
-          <ExpandAltOutlined />
+        <div className="">
+          <ExportExpantButton />
         </div>
       </div>
 
       {/* Responsive Body */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
-        {/* Left - Always Two-column grid */}
+        {/* Left - Two-column grid */}
         <div className="grid grid-cols-2 gap-x-8 gap-y-4 flex-1">
           {hotObjects.map((item, index) => (
             <div key={index} className="flex flex-col space-y-1">
@@ -83,7 +80,7 @@ export default function HotObjects() {
           ))}
         </div>
 
-        {/* Right - Doughnut chart (below on small screens) */}
+        {/* Right - Doughnut chart */}
         <div className="flex justify-center md:justify-end">
           <div className="relative w-32 h-32">
             <Doughnut

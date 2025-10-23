@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, Progress } from "antd";
-import { ExpandAltOutlined, ExportOutlined } from "@ant-design/icons";
+import { Card } from "antd";
+import ExportExpantButton from "../ExportExpantButton/ExportExpantButton";
 
 export default function TouchAlarmsByObject() {
   const data = [
@@ -31,33 +31,54 @@ export default function TouchAlarmsByObject() {
     },
   ];
 
+  // Get the max percent for scaling bars
+  const maxPercent = Math.max(...data.map((item) => item.percent));
+
   return (
     <Card>
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div className="text-lg font-semibold">Touch Alarms By Object</div>
-        <div className="flex items-center gap-3">
-          <ExportOutlined />
-          <ExpandAltOutlined />
+        <div className=" text-gray-600">
+          <ExportExpantButton />
         </div>
       </div>
-      <div className="space-y-4">
-        {data.map((item, index) => (
-          <div key={index}>
-            <div className="flex justify-between">
-              <span className="font-medium text-gray-700">{item.name}</span>
+
+      {/* Data Rows */}
+      <div className="space-y-6">
+        {data.map((item, index) => {
+          // Calculate relative width (% of maxPercent)
+          const relativeWidth = (item.percent / maxPercent) * 100;
+
+          return (
+            <div key={index} className="flex justify-between items-start">
+              {/* Left Column */}
+              <div className="w-[40%]">
+                <div className="font-medium text-gray-700">{item.name}</div>
+                <div className="text-gray-500 text-sm">{item.count}</div>
+              </div>
+
+              {/* Spacer Column */}
+              <div className="w-[30%]" />
+
+              {/* Right Column */}
+              <div className="w-[30%] flex flex-col">
+                {/* Bar scaled relative to maxPercent */}
+                <div
+                  className="h-6 rounded-md transition-all duration-500"
+                  style={{
+                    width: `${relativeWidth}%`,
+                    backgroundColor: item.color,
+                  }}
+                />
+                {/* Percent below bar */}
+                <div className="text-gray-500 text-xs mt-1">
+                  {item.percent}%
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-500 text-sm">{item.count}</span>
-              <span className="text-gray-500 text-xs">{item.percent}%</span>
-            </div>
-            <Progress
-              percent={item.percent}
-              showInfo={false}
-              strokeColor={item.color}
-              className="h-2!"
-            />
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Card>
   );

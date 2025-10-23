@@ -1,9 +1,10 @@
 "use client";
 
 import { Card, Table, Progress } from "antd";
-import { ExpandAltOutlined, ExportOutlined } from "@ant-design/icons";
 import React from "react";
 import DropDownButton from "../DropDownButton/DropDownButton";
+import Image from "next/image";
+import ExportExpantButton from "../ExportExpantButton/ExportExpantButton";
 
 interface PriorityData {
   key: string;
@@ -22,7 +23,11 @@ export default function ResponseByPriority() {
       totalAlarms: 42,
       avgResTime: 3.02,
       progress: 30,
-      icon: <span className="text-red-500 text-lg">⬢</span>,
+      icon: (
+        <div className="w-10 h-10 flex items-center justify-center">
+          <Image src="/images/2.png" width={20} height={20} alt="escalated" />
+        </div>
+      ),
     },
     {
       key: "2",
@@ -30,7 +35,15 @@ export default function ResponseByPriority() {
       totalAlarms: 75,
       avgResTime: 4.12,
       progress: 50,
-      icon: <span className="text-yellow-500 text-lg">⬢</span>,
+      icon: (
+        <div className=" w-10 h-10 flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <Image src="/images/3.png" width={20} height={6} alt="urgent" />
+            <Image src="/images/3.png" width={20} height={6} alt="urgent" />
+            <Image src="/images/3.png" width={20} height={6} alt="urgent" />
+          </div>
+        </div>
+      ),
     },
     {
       key: "3",
@@ -38,7 +51,14 @@ export default function ResponseByPriority() {
       totalAlarms: 32,
       avgResTime: 5.44,
       progress: 70,
-      icon: <span className="text-orange-400 text-lg">⬢</span>,
+      icon: (
+        <div className=" w-10 h-10 flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <Image src="/images/3.png" width={20} height={6} alt="high" />
+            <Image src="/images/3.png" width={20} height={6} alt="high" />
+          </div>
+        </div>
+      ),
     },
     {
       key: "4",
@@ -46,7 +66,13 @@ export default function ResponseByPriority() {
       totalAlarms: 12,
       avgResTime: 5.98,
       progress: 90,
-      icon: <span className="text-yellow-300 text-lg">⬢</span>,
+      icon: (
+        <div className="w-10 h-10 flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <Image src="/images/3.png" width={20} height={6} alt="standard" />{" "}
+          </div>
+        </div>
+      ),
     },
   ];
 
@@ -55,10 +81,10 @@ export default function ResponseByPriority() {
       title: "Priority",
       dataIndex: "priority",
       key: "priority",
-      render: (record: PriorityData) => (
-        <div className="flex items-center gap-2">
+      render: (_: string, record: PriorityData) => (
+        <div className="flex items-center gap-3">
           {record.icon}
-          <span>{record.priority}</span>
+          <span className="text-gray-700 font-medium">{record.priority}</span>
         </div>
       ),
     },
@@ -91,12 +117,11 @@ export default function ResponseByPriority() {
     <Card>
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-3">
-          <div className="text-lg font-semibold">Response By</div>
+          <div className="text-lg font-semibold">Response by</div>
           <DropDownButton text="Priority" />
         </div>
-        <div className="flex items-center gap-3">
-          <ExportOutlined />
-          <ExpandAltOutlined />
+        <div className="">
+          <ExportExpantButton />
         </div>
       </div>
       <Table

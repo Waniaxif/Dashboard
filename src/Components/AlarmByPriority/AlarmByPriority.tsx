@@ -1,7 +1,6 @@
 "use client";
 
 import { Card } from "antd";
-import { ExpandAltOutlined, ExportOutlined } from "@ant-design/icons";
 import {
   Chart as ChartJS,
   LineElement,
@@ -14,6 +13,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import React from "react";
+import ExportExpantButton from "../ExportExpantButton/ExportExpantButton";
 
 ChartJS.register(
   LineElement,
@@ -48,6 +48,7 @@ export default function AlarmByPriority() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // 👈 allows chart to fill container height
     plugins: {
       legend: { display: false },
       tooltip: { enabled: true },
@@ -66,17 +67,24 @@ export default function AlarmByPriority() {
 
   return (
     <Card>
+      {/* Header */}
+
       <div className="flex justify-between items-center mb-4">
         <div className="text-lg font-semibold">Alarms by Priority</div>
-        <div className="flex items-center gap-3">
-          <ExportOutlined />
-          <ExpandAltOutlined />
+        <div className="">
+          <ExportExpantButton />
         </div>
       </div>
+
+      {/* Content */}
       <div className="flex flex-col">
         <span className="text-4xl font-semibold">473</span>
         <span className="text-gray-500 mb-4">Total Alarms</span>
-        <Line data={data} options={options} height={40} />
+
+        {/* Chart container with responsive height */}
+        <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[350px]">
+          <Line data={data} options={options} />
+        </div>
       </div>
     </Card>
   );

@@ -56,11 +56,13 @@ export default function Sidebar() {
           mode="horizontal"
           items={items}
           style={{
+            width: "100%", // ✅ ensures full width
             display: "flex",
             justifyContent: "space-around",
             background: "#2f3331",
             borderTop: "1px solid #3a3a3a",
           }}
+          className="flex-1"
         />
       </div>
     </ConfigProvider>

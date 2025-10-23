@@ -1,7 +1,6 @@
 "use client";
 
 import { Card } from "antd";
-import { ExpandAltOutlined, ExportOutlined } from "@ant-design/icons";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -9,6 +8,7 @@ import {
   Tooltip as ChartTooltip,
   Legend,
 } from "chart.js";
+import ExportExpantButton from "../ExportExpantButton/ExportExpantButton";
 
 ChartJS.register(ArcElement, ChartTooltip, Legend);
 
@@ -40,9 +40,8 @@ export default function AlarmByReason() {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div className="text-lg font-semibold">Alarm by Reason</div>
-        <div className="flex items-center gap-3">
-          <ExportOutlined />
-          <ExpandAltOutlined />
+        <div className="">
+          <ExportExpantButton />
         </div>
       </div>
 
