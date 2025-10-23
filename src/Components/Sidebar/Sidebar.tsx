@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import {
   BarChartOutlined,
   ContainerOutlined,
@@ -11,25 +11,13 @@ import { Menu, ConfigProvider } from "antd";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
-  {
-    key: "1",
-    icon: <BarChartOutlined />,
-  },
-  {
-    key: "2",
-    icon: <FundProjectionScreenOutlined />,
-  },
-  {
-    key: "3",
-    icon: <ContainerOutlined />,
-  },
-  {
-    key: "4",
-    icon: <SettingOutlined />,
-  },
+  { key: "1", icon: <BarChartOutlined /> },
+  { key: "2", icon: <FundProjectionScreenOutlined /> },
+  { key: "3", icon: <ContainerOutlined /> },
+  { key: "4", icon: <SettingOutlined /> },
 ];
 
-const App: React.FC = () => {
+export default function Sidebar() {
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
   };
@@ -49,23 +37,32 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Menu
-        onClick={onClick}
-        style={{
-          width: 70,
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-          zIndex: 1000,
-        }}
-        selectedKeys={["1"]}
-        mode="inline"
-        items={items}
-      />
+      {/* Desktop Sidebar */}
+      <div className="fixed left-0 top-0 h-screen w-[72px] z-50 hidden md:flex">
+        <Menu
+          onClick={onClick}
+          selectedKeys={["1"]}
+          mode="inline"
+          items={items}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
+
+      {/* Mobile Bottom Menu */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex md:hidden">
+        <Menu
+          onClick={onClick}
+          selectedKeys={["1"]}
+          mode="horizontal"
+          items={items}
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            background: "#2f3331",
+            borderTop: "1px solid #3a3a3a",
+          }}
+        />
+      </div>
     </ConfigProvider>
   );
-};
-
-export default App;
+}

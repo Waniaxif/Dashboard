@@ -11,14 +11,12 @@ export default function MainLayout({ children }: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // simulate 1 second load
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen flex bg-gray-200">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-200">
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -36,18 +34,18 @@ export default function MainLayout({ children }: Props) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex w-full"
+            className="flex flex-1 flex-col md:flex-row w-full"
           >
-            <div>
-              <Sidebar />
-            </div>
+            {/* Sidebar (responsive) */}
+            <Sidebar />
 
-            <div
-              style={{ paddingLeft: 70 }}
-              className="flex-1 flex flex-col bg-gray-200"
-            >
+            {/* Main content area */}
+            <div className="flex-1 flex flex-col bg-gray-200 md:ml-[72px]">
+              {/* Header (shifts automatically with sidebar width on md) */}
               <Header />
-              <main className="flex-1 overflow-auto">{children}</main>
+              <main className="flex-1 overflow-auto pb-16 md:pb-0">
+                {children}
+              </main>
             </div>
           </motion.div>
         )}
