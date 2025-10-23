@@ -54,9 +54,13 @@ const App: React.FC = () => {
         style={{
           width: 70,
           height: "100vh",
+          position: "fixed", // 👈 keeps the sider fixed
+          left: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 1000, // optional, keeps it above other content
         }}
         selectedKeys={["1"]}
-        // defaultSelectedKeys={["1"]}
         mode="inline"
         items={items}
       />

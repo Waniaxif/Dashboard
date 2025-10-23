@@ -42,7 +42,10 @@ export default function MainLayout({ children }: Props) {
               <Sidebar />
             </div>
 
-            <div className="flex-1 flex flex-col bg-gray-200">
+            <div
+              style={{ paddingLeft: 70 }}
+              className="flex-1 flex flex-col bg-gray-200"
+            >
               <Header />
               <main className="flex-1 overflow-auto">{children}</main>
             </div>
