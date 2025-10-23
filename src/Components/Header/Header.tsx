@@ -20,11 +20,8 @@ export default function Header() {
         art sentry dashboard
       </div>
       <div className="flex flex-wrap gap-4 mb-4 lg:justify-between">
-        {/* Left Section */}
         <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto">
           <DropDownButton text="All Group" StartIcon={<AppstoreOutlined />} />
-
-          {/* Refresh visible only on md */}
           <div className="hidden md:flex">
             <DropDownButton
               text="Refresh: 5 minutes"
@@ -41,10 +38,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-
-        {/* Right Section */}
         <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto md:justify-start lg:justify-end">
-          {/* Hide on md (shown on top in md) */}
           <div className="flex md:hidden">
             <DropDownButton
               text="Refresh: 5 minutes"

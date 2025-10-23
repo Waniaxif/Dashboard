@@ -37,7 +37,6 @@ export default function Sidebar() {
         },
       }}
     >
-      {/* Desktop Sidebar */}
       <div className="fixed left-0 top-0 h-screen w-[72px] z-50 hidden md:flex">
         <Menu
           onClick={onClick}
@@ -48,7 +47,6 @@ export default function Sidebar() {
         />
       </div>
 
-      {/* Mobile Bottom Menu */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex md:hidden">
         <Menu
           onClick={onClick}
@@ -56,7 +54,7 @@ export default function Sidebar() {
           mode="horizontal"
           items={items}
           style={{
-            width: "100%", // ✅ ensures full width
+            width: "100%",
             display: "flex",
             justifyContent: "space-around",
             background: "#2f3331",

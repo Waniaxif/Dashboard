@@ -36,12 +36,8 @@ export default function MainLayout({ children }: Props) {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-1 flex-col md:flex-row w-full"
           >
-            {/* Sidebar (responsive) */}
             <Sidebar />
-
-            {/* Main content area */}
             <div className="flex-1 flex flex-col bg-gray-200 md:ml-[72px]">
-              {/* Header (shifts automatically with sidebar width on md) */}
               <Header />
               <main className="flex-1 overflow-auto pb-16 md:pb-0">
                 {children}
