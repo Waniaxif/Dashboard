@@ -20,23 +20,39 @@ export default function Header() {
       <div className="text-xl font-semibold capitalize mb-4">
         art sentry dashboard
       </div>
-      <div className="flex items-center justify-between gap-4 mb-4">
-        <div className="gap-4 flex items-center">
+      <div className="flex flex-wrap gap-4 mb-4 lg:justify-between">
+        {/* Left Section */}
+        <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto">
           <DropDownButton text="All Group" StartIcon={<AppstoreOutlined />} />
+
+          {/* Refresh visible only on md */}
+          <div className="hidden md:flex">
+            <DropDownButton
+              text="Refresh: 5 minutes"
+              StartIcon={<RetweetOutlined />}
+            />
+          </div>
+
           <div className="flex items-center gap-2 rounded-md bg-gray-300 h-8 px-3">
             <CameraOutlined />
             <span className="text-xs">Total Cameras: 53</span>
             <div className="rounded-full bg-gray-100 px-2 h-4 text-xs flex items-center justify-center">
               <div className="rounded-full h-1 w-1 bg-red-700 mr-1"></div>
-              <span className="">4 Offline</span>
+              <span>4 Offline</span>
             </div>
           </div>
         </div>
-        <div className=" gap-4 flex items-center">
-          <DropDownButton
-            text="Refresh: 5 minutes"
-            StartIcon={<RetweetOutlined />}
-          />
+
+        {/* Right Section */}
+        <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto md:justify-start lg:justify-end">
+          {/* Hide on md (shown on top in md) */}
+          <div className="flex md:hidden">
+            <DropDownButton
+              text="Refresh: 5 minutes"
+              StartIcon={<RetweetOutlined />}
+            />
+          </div>
+
           <DropDownButton
             text="This month: Oct 1, 2025 - Oct 31, 2025"
             StartIcon={<CalendarOutlined />}
@@ -44,21 +60,26 @@ export default function Header() {
           <ExportButton />
         </div>
       </div>
+
       <div className="mb-4">
         <Card>
           <div className="flex flex-col gap-4">
+            {/* Header */}
             <div className="flex justify-between items-center">
               <div className="text-lg font-semibold">
                 Unacknowledged Alarms by Priority
               </div>
               <ReviewButton text="Review All" />
             </div>
-            <div className="flex w-auto gap-4 overflow-x-auto">
+
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Card 1 */}
               <Card className="w-full">
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-3">
-                      <div className="bg-red-200 rounded-full w-12 h-12 flex items-center justify-center ">
+                      <div className="bg-red-200 rounded-full w-12 h-12 flex items-center justify-center">
                         <Image
                           src="/images/2.png"
                           width={22}
@@ -67,19 +88,20 @@ export default function Header() {
                         />
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-semibold text-lg">7 </span>
-                        <span className="text-gray-500">Escalated </span>
+                        <span className="font-semibold text-lg">7</span>
+                        <span className="text-gray-500">Escalated</span>
                       </div>
                     </div>
 
-                    <div className=" bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
+                    <div className="bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
                       avg 7 min ago
                     </div>
                   </div>
+
                   <div className="flex flex-col gap-2 bg-gray-200 p-3 rounded-md">
                     <div className="flex justify-between items-center">
-                      <div className="">
-                        <div className="flex gap-2 items-center  ">
+                      <div>
+                        <div className="flex gap-2 items-center">
                           <Image
                             src="/images/2.png"
                             width={12}
@@ -90,18 +112,18 @@ export default function Header() {
                         </div>
                         <span className="text-gray-500">10 min ago</span>
                       </div>
-                      <div className="">
-                        <ReviewButton text="Review" />
-                      </div>
+                      <ReviewButton text="Review" />
                     </div>
                   </div>
                 </div>
               </Card>
+
+              {/* Card 2 */}
               <Card className="w-full">
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-3">
-                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center ">
+                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
                         <div className="flex flex-col items-center">
                           <Image
                             src="/images/3.png"
@@ -124,19 +146,20 @@ export default function Header() {
                         </div>
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-semibold text-lg">4 </span>
+                        <span className="font-semibold text-lg">4</span>
                         <span className="text-gray-500">Urgent</span>
                       </div>
                     </div>
 
-                    <div className=" bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
+                    <div className="bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
                       avg 10 min ago
                     </div>
                   </div>
+
                   <div className="flex flex-col gap-2 bg-gray-200 p-3 rounded-md">
                     <div className="flex justify-between items-center">
-                      <div className="">
-                        <div className="flex gap-2 items-center  ">
+                      <div>
+                        <div className="flex gap-2 items-center">
                           <div className="flex flex-col items-center">
                             <Image
                               src="/images/3.png"
@@ -161,18 +184,18 @@ export default function Header() {
                         </div>
                         <span className="text-gray-500">24 min ago</span>
                       </div>
-                      <div className="">
-                        <ReviewButton text="Review" />
-                      </div>
+                      <ReviewButton text="Review" />
                     </div>
                   </div>
                 </div>
               </Card>
+
+              {/* Card 3 */}
               <Card className="w-full">
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-3">
-                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center ">
+                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
                         <div className="flex flex-col items-center">
                           <Image
                             src="/images/3.png"
@@ -190,18 +213,19 @@ export default function Header() {
                       </div>
                       <div className="flex flex-col">
                         <span className="font-semibold text-lg">22</span>
-                        <span className="text-gray-500">High </span>
+                        <span className="text-gray-500">High</span>
                       </div>
                     </div>
 
-                    <div className=" bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
+                    <div className="bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
                       avg 1 hr ago
                     </div>
                   </div>
+
                   <div className="flex flex-col gap-2 bg-gray-200 p-3 rounded-md">
                     <div className="flex justify-between items-center">
-                      <div className="">
-                        <div className="flex gap-2 items-center  ">
+                      <div>
+                        <div className="flex gap-2 items-center">
                           <div className="flex flex-col items-center">
                             <Image
                               src="/images/3.png"
@@ -220,18 +244,18 @@ export default function Header() {
                         </div>
                         <span className="text-gray-500">1 hr ago</span>
                       </div>
-                      <div className="">
-                        <ReviewButton text="Review" />
-                      </div>
+                      <ReviewButton text="Review" />
                     </div>
                   </div>
                 </div>
               </Card>
+
+              {/* Card 4 */}
               <Card className="w-full">
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-3">
-                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center ">
+                      <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
                         <Image
                           src="/images/3.png"
                           width={22}
@@ -245,28 +269,26 @@ export default function Header() {
                       </div>
                     </div>
 
-                    <div className=" bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
+                    <div className="bg-gray-300 rounded-full px-2 py-0.5 font-semibold">
                       avg 2 hr ago
                     </div>
                   </div>
+
                   <div className="flex flex-col gap-2 bg-gray-200 p-3 rounded-md">
                     <div className="flex justify-between items-center">
-                      <div className="">
-                        <div className="flex gap-2 items-center  ">
+                      <div>
+                        <div className="flex gap-2 items-center">
                           <Image
                             src="/images/3.png"
                             width={12}
                             height={5}
                             alt="bar chart"
                           />
-
                           <span className="capitalize">hope</span>
                         </div>
                         <span className="text-gray-500">2 hr ago</span>
                       </div>
-                      <div className="">
-                        <ReviewButton text="Review" />
-                      </div>
+                      <ReviewButton text="Review" />
                     </div>
                   </div>
                 </div>
@@ -275,14 +297,15 @@ export default function Header() {
           </div>
         </Card>
       </div>
+
       <div className="mb-4">
         <AlarmByPriority />
       </div>
-      <div className="grid grid-cols-2 gap-3 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
         <HotObjects />
         <AlarmByReason />
       </div>
-      <div className="grid grid-cols-2 gap-3 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
         <TouchAlarmsByObject />
         <ResponseByPriority />
       </div>
