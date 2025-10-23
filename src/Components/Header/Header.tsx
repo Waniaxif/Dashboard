@@ -22,7 +22,8 @@ export default function Header() {
       <div className="flex flex-wrap gap-4 mb-4 lg:justify-between">
         <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto">
           <DropDownButton text="All Group" StartIcon={<AppstoreOutlined />} />
-          <div className="hidden md:flex">
+
+          <div className="flex md:hidden">
             <DropDownButton
               text="Refresh: 5 minutes"
               StartIcon={<RetweetOutlined />}
@@ -37,9 +38,16 @@ export default function Header() {
               <span>4 Offline</span>
             </div>
           </div>
+
+          <div className="hidden md:flex lg:hidden">
+            <DropDownButton
+              text="Refresh: 5 minutes"
+              StartIcon={<RetweetOutlined />}
+            />
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-4 w-full md:w-full lg:w-auto md:justify-start lg:justify-end">
-          <div className="flex md:hidden">
+          <div className="hidden lg:flex">
             <DropDownButton
               text="Refresh: 5 minutes"
               StartIcon={<RetweetOutlined />}
@@ -47,7 +55,7 @@ export default function Header() {
           </div>
 
           <DropDownButton
-            text="This month: Oct 1, 2025 - Oct 31, 2025"
+            text="This month: Dec 1, 2023 - Dec 31, 2023"
             StartIcon={<CalendarOutlined />}
           />
           <ExportButton />
