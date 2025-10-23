@@ -8,7 +8,6 @@ export default function Loader() {
       <Spin
         indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
         size="large"
-        tip="Loading..."
       />
     </div>
   );
